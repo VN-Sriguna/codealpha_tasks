@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CodeAlpha NIDS Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <div>
+      <p class="eyebrow">CodeAlpha Cyber Security Internship — Task 4</p>
+      <h1>Network Intrusion Detection</h1>
+    </div>
+    <p class="live">Live refresh every 3s</p>
+  </header>
+
+  <section class="kpis">
+    <article><span>Total alerts</span><strong id="kpi-total">0</strong></article>
+    <article><span>High severity</span><strong id="kpi-high">0</strong></article>
+    <article><span>Medium</span><strong id="kpi-medium">0</strong></article>
+    <article><span>Blocklisted IPs</span><strong id="kpi-blocked">0</strong></article>
+  </section>
+
+  <section class="charts">
+    <div class="panel"><h2>Severity mix</h2><canvas id="severityChart"></canvas></div>
+    <div class="panel"><h2>Alert classes</h2><canvas id="classChart"></canvas></div>
+    <div class="panel wide"><h2>Alerts over time</h2><canvas id="timeChart"></canvas></div>
+  </section>
+
+  <section class="split">
+    <div class="panel">
+      <h2>Top source IPs</h2>
+      <ul id="sources"></ul>
+    </div>
+    <div class="panel">
+      <h2>Local blocklist</h2>
+      <ul id="blocklist"></ul>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Recent alerts</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Severity</th>
+            <th>SID</th>
+            <th>Name</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="alerts-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
